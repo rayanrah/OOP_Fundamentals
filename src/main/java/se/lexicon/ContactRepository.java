@@ -14,7 +14,7 @@ public class ContactRepository {
     // First part is about 'Add a Contact'.
     public static boolean add(String contact) {
 
-        // i. Add exception argument to terminate the APp of the logical Error detected.
+        // i. Add exception argument to terminate the APP of the logical Error detected.
         // ii. Validation or check the input parameters to be correct. if the length of contact os the less than the MAX size.
         // iii. check if the Number or contact exist in the Array contacts or not.
         // iv. Add a logics. We need to add one space for storing data by users.
