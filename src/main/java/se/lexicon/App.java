@@ -30,12 +30,17 @@ public class App {
 
          Car Car1 = new Car("ABC 13456", "Volvo", "V60", 2016);
          Car Car2 = new Car("Volvo", "V60");
+         Car Car3 = new Car("Toyota", "CHR");
 
+         Person person1 = new Person("20256485138","720 19 91 31", "Ryan Rah");
+         Person person2 = new Person("20256485138", "Ryan Rah", "re.rah@gmail.com", "720 19 91 31");
+
+        Car1.setOwner(person1);
+        Car2.setOwner(person2);
 
         System.out.println(Car1.getCarInfo());
         System.out.println(Car2.getCarInfo());
-
-
+        System.out.println(Car3.getCarInfo());
 
 
         /*Executive code for "ContactRepository" Class:

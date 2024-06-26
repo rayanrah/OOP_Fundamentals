@@ -13,8 +13,9 @@ public class Car {
     private String brand;
     private String model;
     private int year;
+    private Person owner;
 
-    /* Create object in APP class:
+    /* info: Create object in APP class:
     To create an object (instances of Car), we use the "new" keyword
     followed by a call to the class constructor.
     Car newCar = new Car(); */
@@ -54,20 +55,35 @@ public class Car {
     */
 
     public Car(String brand, String model) {
-        this.registrationNumber = UUID.randomUUID().toString().substring(0, 8); // Generate random number.
+        this.registrationNumber = generateCarNum();
+        // UUID.randomUUID().toString().substring(0, 8); // Generate random number.
         this.brand = brand;
         this.model = model;
         this.year = LocalDate.now().getYear();
     }
 
+    /* Constructors are responsible to initialize the class field and not generating something.
+    For that reason it is recommended to move any generating code out as a method and refer it instead.
+    - We create a new method that generate the random number and after we refer it to constructor. */
+    private String generateCarNum() {
+        return UUID.randomUUID().toString().substring(0, 8);
+    }
+
+
     // Getter Methods (Behaviour):
     // It provides read-only information to print.
     // The purpose of Method is to collect the information of instance data and return it to the text sentence.
     // when we call 'getCarInfo', it should provide the summary information about the car.
+    // We create a condition for the car to show the ownership when we assign the person in App.
     public String getCarInfo() {
         String result = "Car info -> Registration Number: " + registrationNumber + " , brand: " + brand + ", Model: " + model + ", Year: " + year;
-        return result;
 
+        if (owner != null) {
+            result+= " OwnerName: " + owner.getName();
+        }else {
+            result+= " No owner assigned";
+        }
+        return result;
     }
 
     /* info: Encapsulation principle:
@@ -77,7 +93,7 @@ public class Car {
      - for this project, we set 'brand' as Encapsulation principle.
     */
 
-    // create a setter method:
+    // Create a setter method:
     // We can now be able to change the Brand name inside the App --> Car1.setBrand("NewVolvo");
     // We can use the 'setBrand ()' method directly at our constructor by replacing it with 'this.brand = brand;'
 
@@ -86,5 +102,20 @@ public class Car {
             throw new IllegalArgumentException("brand can not be null or empty.");
         }
         this.brand = brand;
+    }
+
+    public void setModel (String model) {
+        if (model == null || model.trim().isEmpty()) {
+            throw new IllegalArgumentException("Model can not be null or empty.");
+        }
+        this.model = model;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }
