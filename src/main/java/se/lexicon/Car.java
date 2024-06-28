@@ -13,7 +13,7 @@ public class Car {
     private String brand;
     private String model;
     private int year;
-    private Person owner;
+    private Person owner; // Person can have only one car.
 
     /* info: Create object in APP class:
     To create an object (instances of Car), we use the "new" keyword
